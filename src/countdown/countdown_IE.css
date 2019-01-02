@@ -1,0 +1,42 @@
+.countdown {
+  text-align: center;
+  width: auto;
+  height: auto;
+  background-color: #fd8a2e;
+  box-sizing: border-box;
+  position: relative;
+}
+.countdown > div {
+  display: inline-block;
+  vertical-align: top;
+  height: auto;
+}
+.countdown > div span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 24px;
+  color: #fd8a2e;
+  background-color: #fff;
+  border-radius: 2px;
+  margin: 0 2px;
+}
+.countdown > div p {
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.countdown > i {
+  display: inline-block;
+  height: 30px;
+  font-size: 22px;
+  color: #fff;
+  line-height: 30px;
+  vertical-align: top;
+  font-style: normal;
+}
