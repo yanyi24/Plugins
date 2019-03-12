@@ -4,7 +4,7 @@
 		loop: true, //倒计时结束后是否循环倒计时 默认true
 		flag: true, //倒计时时间标志，默认值true
 		endStampName: 'endStamp', //(String) 存储cookie或localStorage的名字
-		txt: {
+		flagTxt: {
 		 	d: 'DAY',
 		 	h: 'HRS',
 		 	min: 'MINS',
