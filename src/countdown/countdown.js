@@ -93,7 +93,7 @@ class yCountdown{
 			this.hours = (this.endStamp - new Date().getTime()) / (60*60*1000);
 			this.config.loop = false;
 		}
-		if(this.hours > 24) this.config.hasDay = true;
+		if(this.hours > 24 && this.hasDay) this.config.hasDay = true;
 	}
 	setStorage(k,v){
 		if (window.localStorage) {
