@@ -10,7 +10,7 @@
 		 	min: 'MINS',
 		 	s: 'SECS'
 		 },  //(Object) 
-		hasDay: false, //默认是不显示天数的倒计时，当倒计时时长超过24小时，自动改为true，显示天数
-		callback：null, //(Function)倒计时结束后的回调，此时loop应该为false  默认值null
+		hasDay: false, //默认是不显示天数的倒计时，不论是否超过24小时，当值为true时，且倒计时时长超过24小时，显示天数
+		callback: null, //(Function)倒计时结束后的回调，此时loop应该为false  默认值null
 	});
 	cd.init();

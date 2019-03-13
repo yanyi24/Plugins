@@ -1,5 +1,6 @@
 // import './countdown_flex.less';
 // import './countdown_IE.less';
+import CookieUtil from './component/CookieUtil';
 
 function delay_script(A) {
 	var B = document.createElement("script")
@@ -93,33 +94,27 @@ class yCountdown{
 			this.hours = (this.endStamp - new Date().getTime()) / (60*60*1000);
 			this.config.loop = false;
 		}
-		if(this.hours > 24 && this.hasDay) this.config.hasDay = true;
+		if(this.hours > 24 && this.config.hasDay) this.config.hasDay = true;
 	}
 	setStorage(k,v){
 		if (window.localStorage) {
 			window.localStorage.setItem(k,v);
 		} else {
-			document.cookie = k + "=" + v;
+			CookieUtil.set(k,v);
 		}
 	}
 	getStorage(k){
 		if (window.localStorage) {
 			return window.localStorage.getItem(k) ? window.localStorage.getItem(k) : false;
 		} else {
-			document.cookie.split(';').forEach(function (v) {
-				if(v.indexOf(k) !== -1){
-					return v.split('=')[1];
-				}else{
-					return false;
-				}
-			});
+			CookieUtil.get(k);
 		}
 	}
 	removeStorage(k){
 		if (window.localStorage) {
 			localStorage.removeItem(k);
 		}else{
-			document.cookie = k + "=" + escape('') + ";expires=-1";
+			CookieUtil.unset(k);
 		}
 	}
 	calcTimes(timeStamp){
@@ -127,7 +122,11 @@ class yCountdown{
 		times.years = parseInt(timeStamp / (1000*60*60*24*30*12));
 		times.months = parseInt(timeStamp / (1000*60*60*24*30) % 12);
 		times.days = parseInt(timeStamp / (1000*60*60*24) % 365 % 30);
-		times.hours = parseInt(timeStamp / (1000*60*60) % 24);
+		if (this.config.hasDay) {
+			times.hours = parseInt(timeStamp / (1000*60*60) % 24);
+		}else{
+			times.hours = parseInt(timeStamp / (1000*60*60));
+		}
 		times.mins = parseInt(timeStamp / (1000*60) % 60);
 		times.secs = parseInt(timeStamp / 1000 % 60 % 60);
 		return times;
@@ -196,7 +195,6 @@ class yCountdown{
 				}
 			}
 		}
-		
 	}
 	handleHtml(){
 		const config = this.config;
