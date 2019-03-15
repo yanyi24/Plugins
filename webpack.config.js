@@ -16,19 +16,38 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 let obj = {
 
+  // 'c': {
+  //   distDirecotry: 'countdown',
+  //   dist: 'dist',
+  //   entry: {
+  //     'jquery': './node_modules/jquery/dist/jquery.min.js',
+  //     'countdown.jquery': './src/countdown/countdown.js'
+  //   },
+  //   html: (
+  //     new HtmlWebpackPlugin({
+  //       filename: 'demo.html', //配置输出文件名和路径
+  //       template: './src/countdown/demo.html', //配置文件模板
+  //       chunksSortMode: 'manual', // 设置排序
+  //       chunks: ['jquery', 'countdown.jquery'], // 设置js
+  //       minify: true,
+  //       cache: false,
+  //       inject: 'body'
+  //     })
+  //   )
+  // },
   'c': {
-    distDirecotry: 'countdown',
+    distDirecotry: 'floor',
     dist: 'dist',
     entry: {
       'jquery': './node_modules/jquery/dist/jquery.min.js',
-      'countdown.jquery': './src/countdown/countdown.js'
+      'floor.jquery': './src/floor/floor.js'
     },
     html: (
       new HtmlWebpackPlugin({
         filename: 'demo.html', //配置输出文件名和路径
         template: './src/countdown/demo.html', //配置文件模板
         chunksSortMode: 'manual', // 设置排序
-        chunks: ['jquery', 'countdown.jquery'], // 设置js
+        chunks: ['jquery', 'floor.jquery'], // 设置js
         minify: true,
         cache: false,
         inject: 'body'
@@ -40,7 +59,7 @@ let obj = {
 
 let o = obj.c;
 
-let distDirecotry = 'countdown'; //bu
+let distDirecotry = 'floor'; 
 let dist = o.dist;
 
 module.exports = {
@@ -75,6 +94,13 @@ module.exports = {
         use: [{
           loader: 'expose-loader',
           options: 'yCountdown'
+        }]
+      },
+      {
+        test: require.resolve('./src/floor/floor.js'),
+        use: [{
+          loader: 'expose-loader',
+          options: 'Floor'
         }]
       },
       {
