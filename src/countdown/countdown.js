@@ -89,10 +89,10 @@ class yCountdown{
 		if (typeof end == 'number') {
 			this.hours = end;
 			this.endStamp = new Date().getTime() + new Date(this.hours * 60 * 60 * 1000).getTime();
-		}else if(typeof end == 'string' && (end.indexOf('/') > -1 || end.indexOf(',') > -1) && end.length === 10){
+		}else if(typeof end == 'string' && (end.indexOf('/') > -1 || end.indexOf(',') > -1) && end.length === 10){ // 当结束时间直接是一个具体的日期时
 			this.endStamp = new Date(end).getTime();
 			this.hours = (this.endStamp - new Date().getTime()) / (60*60*1000);
-			this.config.loop = false;
+			this.config.loop = false; // 直接不循环
 		}
 		if(this.hours > 24 && this.config.hasDay) this.config.hasDay = true;
 	}
@@ -107,7 +107,7 @@ class yCountdown{
 		if (window.localStorage) {
 			return window.localStorage.getItem(k) ? window.localStorage.getItem(k) : false;
 		} else {
-			CookieUtil.get(k);
+			return CookieUtil.get(k);
 		}
 	}
 	removeStorage(k){
@@ -158,7 +158,7 @@ class yCountdown{
 	updateEndStamp(){
 		const cfg = this.config;
 		const el = cfg.el;
-		if (!this.getStorage(cfg.endStampName) && this.timer !== null) { //没有cookie时
+		if ( (!this.getStorage(cfg.endStampName) && this.timer !== null) || (parseInt(this.getStorage(cfg.endStampName)) > this.endStamp) ) { //没有cookie时 或 储存的时间戳大于应该的结束时间戳
 			this.setStorage(cfg.endStampName, this.endStamp);
 		}else{
 			this.endStamp = parseInt(this.getStorage(cfg.endStampName) );
