@@ -6,29 +6,32 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Floor</title>
 	<link rel="stylesheet" href="./floor_flex.css">
+	<style>
+	.y-floor-content-position{
+		font-size: 42px;
+		font-weight: bold;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	</style>
 </head>
 <body>
-	<div class="y-floor cross ver-b">
-		<div class="y-floor-item">
-			<span class="y-floor-item-icon"></span>
-			<span class="y-floor-item-title">FLOOR ONE</span>
-		</div>
-		<div class="y-floor-item">
-			<span class="y-floor-item-icon"></span>
-			<span class="y-floor-item-title">FLOOR TWO</span>
-		</div>
-		<div class="y-floor-item">
-			<span class="y-floor-item-icon"></span>
-			<span class="y-floor-item-title">FLOOR THREE</span>
-		</div>
-	</div>
+
 	<div>
 		<div style="height: 800px; background-color: rgb(236, 43, 43);"></div>
-		<div class="y-floor-content-position" style="height: 800px; background-color: #aaa;"></div>
-		<div class="y-floor-content-position" style="height: 800px; background-color: #6b503b;"></div>
-		<div class="y-floor-content-position" style="height: 800px; background-color: rgb(190, 105, 105);"></div>
+		<div class="y-floor-content-position" style="height: 800px; background-color: #aaa;">1F</div>
+		<div class="y-floor-content-position" style="height: 800px; background-color: #6b503b;">2F</div>
+		<div class="y-floor-content-position" style="height: 800px; background-color: rgb(190, 105, 105);">3F</div>
+		<div style="height: 1400px; background-color: rgb(236, 43, 43);"></div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="./floor.js"></script>
+	<script>
+		var floor = new Floor({
+			title: ['1 F', '2 F', '3 F', '4 f']
+		});
+		floor.init();
+	</script>
 </body>
 </html>

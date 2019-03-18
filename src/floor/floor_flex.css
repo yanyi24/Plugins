@@ -1,41 +1,49 @@
 .y-floor {
   display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
   box-sizing: border-box;
-  width: 800px;
+  width: auto;
   position: fixed;
   z-index: 100;
   overflow: hidden;
-}
-.y-floor.vertical {
-  flex-direction: column;
-  flex: 0 0 100%;
+  right: 0;
   top: 20vh;
 }
-.y-floor.vertical.ver-l {
+.y-floor.ver-l {
   left: 0;
+  right: auto;
 }
-.y-floor.vertical.ver-r {
+.y-floor.ver-r {
   right: 0;
+  left: auto;
 }
-.y-floor.cross {
+.y-floor.ver-t,
+.y-floor.ver-b {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   left: 50%;
-  margin-left: -400px;
-}
-.y-floor.cross.ver-t {
-  top: 0;
-}
-.y-floor.cross.ver-b {
   bottom: 0;
+  margin-left: -50%;
+  width: 100%;
+}
+.y-floor.ver-t {
+  top: 0;
+  bottom: auto;
+}
+.y-floor.ver-b {
+  bottom: 0;
+  top: auto;
 }
 .y-floor-item {
   display: flex;
   justify-content: center;
+  flex: 0 0 33.33%;
   cursor: pointer;
   background-color: #4071cc;
   padding: 6px 12px;
+  box-sizing: border-box;
   transition: all 0.4s ease;
 }
 .y-floor-item:hover,
@@ -44,6 +52,6 @@
 }
 .y-floor-item-title {
   font-size: 18px;
-  line-height: 1;
+  line-height: 1.6;
   color: #fff;
 }

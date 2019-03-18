@@ -1,51 +1,61 @@
-@floor-width: 800px;
+@floor-width: auto;
+@floor-cross-width: 100%;
 @floor-z-index: 100;
 @floor-top: 20vh;
 @item-bg: #4071cc;
 @item-hover-bg: #3b21d1;
 @item-title-size: 18px;
 @item-title-color: #fff;
+@item-flex: 0 0 33.33%;
 
 
 
 .y-floor{
 	display: flex;
+	flex-direction: column;
+	flex: 0 0 100%;
 	box-sizing: border-box;
 	width: @floor-width;
 	position: fixed;
 	z-index: @floor-z-index;
 	overflow: hidden;
-	&.vertical{
-		flex-direction: column;
-		flex: 0 0 100%;
-		top: @floor-top;
-		&.ver-l{
-			left: 0;
-		}
-		&.ver-r{
-			right: 0;
-		}
+	right: 0;
+	top: @floor-top;
+	&.ver-l{
+		left: 0;
+		right: auto;
 	}
-	&.cross{
+	&.ver-r{
+		right: 0;
+		left: auto;
+	}
+	&.ver-t,
+	&.ver-b{
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		left: 50%;
-		margin-left: -(@floor-width / 2);
-		&.ver-t{
-			top: 0;
-		}
-		&.ver-b{
-			bottom: 0;
-		}
+		bottom: 0;
+		margin-left: -(@floor-cross-width / 2);
+		width: @floor-cross-width;
+	}
+	&.ver-t{
+		top: 0;
+		bottom: auto;
+	}
+	&.ver-b{
+		bottom: 0;
+		top: auto;
 	}
 }
 .y-floor-item{
 	display: flex;
 	justify-content: center;
+	flex: @item-flex;
 	cursor: pointer;
 	background-color: @item-bg;
 	padding: 6px 12px;
+	box-sizing: border-box;
 	transition: all 0.4s ease;
 	&:hover,
 	&.active{
@@ -54,6 +64,6 @@
 }
 .y-floor-item-title{
 	font-size: @item-title-size;
-	line-height: 1;
+	line-height: 1.6;
 	color: @item-title-color;
 }
