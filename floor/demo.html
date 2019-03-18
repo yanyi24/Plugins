@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Floor</title>
 	<style>
@@ -14,7 +14,7 @@
 		align-items: center;
 	}
 	</style>
-</head>
+<link href="/floor.jquery.css?v=33d45b" rel="stylesheet"></head>
 <body>
 
 	<div>
@@ -25,5 +25,14 @@
 		<div style="height: 1400px; background-color: rgb(236, 43, 43);"></div>
 	</div>
 
-</body>
+<script type="text/javascript" src="/dist/jquery.js?v=33d45b40"></script><script type="text/javascript" src="/dist/floor.jquery.js?v=33d45b40"></script><script>
+	var floor = new Floor({
+		positionEl: '.y-floor-content-position',
+		floorBarPosition: 'ver-b',
+		title: ['1 F', '2 F', '3 F', '4 f'],
+		positionPercent: 0, // 滑动距屏幕顶端10%时，切换
+		animateDuring: 500, // 500ms
+	});
+	floor.init();
+</script></body>
 </html>

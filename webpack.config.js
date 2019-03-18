@@ -45,7 +45,7 @@ let obj = {
     html: (
       new HtmlWebpackPlugin({
         filename: 'demo.html', //配置输出文件名和路径
-        template: './src/countdown/demo.html', //配置文件模板
+        template: './src/floor/demo.html', //配置文件模板
         chunksSortMode: 'manual', // 设置排序
         chunks: ['jquery', 'floor.jquery'], // 设置js
         minify: true,
