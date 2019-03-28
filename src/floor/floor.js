@@ -6,8 +6,8 @@ function throttle(method, context){
 		method.call(context);
 	}, 200);
 }
-class Floor{
-	constructor(options){
+class Floor {
+	constructor(options) {
 		this.config = $.extend({
 			positionEl: '.y-floor-content-position',
 			floorBarPosition: 'ver-r',
@@ -17,13 +17,13 @@ class Floor{
 			positionElTop: [],
 		}, options || {});
 	}
-	matchContent2title(){ // 确保配置的title跟content数量匹配 
+	matchContent2title() { // 确保配置的title跟content数量匹配 
 		const cfg = this.config;
 		let contents = $(cfg.positionEl);
 		contents.length = cfg.title.length > contents.length ? contents.length : cfg.title.length;
 		cfg.title.length = contents.length;
 	}
-	prependFloor(){
+	prependFloor() {
 		const title = this.config.title;
 		let html = '';
 		title.forEach((v, i) => {
@@ -34,37 +34,45 @@ class Floor{
 						</div>`;
 		$('body').prepend(html);
 	}
-	calcContentPosition(){
+	calcContentPosition() {
 		const cfg = this.config;
 		const contents = $(cfg.positionEl);
-		Array.prototype.forEach.call(contents,(v,i)=>{
-			cfg.positionElTop.push(parseInt($(v).offset().top - $(window).height() * cfg.positionPercent));
+		Array.prototype.forEach.call(contents, (v, i) => {
+			if (cfg.positionPercent !== 0) {
+				cfg.positionElTop.push(parseInt($(v).offset().top - $(window).height() * cfg.positionPercent));
+			} else {
+				cfg.positionElTop.push(parseInt($(v).offset().top));
+			}
 		});
 		cfg.positionElTop.push(parseInt($(contents[contents.length - 1]).height()) + cfg.positionElTop[cfg.positionElTop.length - 1])
 	}
-	getWindowInitScrollTop(){
+	getWindowInitScrollTop() {
 		this.windowInitScrollTop = parseInt($(window).scrollTop());
 	}
-	calcCurrentPosition(currentWindowScrollTop){
+	calcCurrentPosition(currentWindowScrollTop) {
 		const cfg = this.config;
 		let newArr = cfg.positionElTop.slice(0);
-
+		if (cfg.positionElTop.indexOf(currentWindowScrollTop) > -1) {
+			currentWindowScrollTop += 1;
+		}
 		newArr.push(currentWindowScrollTop);
-		newArr.sort((a, b) => {return a-b});
+		newArr.sort((a, b) => {
+			return a - b
+		});
 		let i = newArr.indexOf(currentWindowScrollTop) - 1;
 		newArr.splice(i + 1, 1);
-		
+
 		if (i < 0 || i >= cfg.title.length) {
 			$('.y-floor').find('.y-floor-item').removeClass('active');
-		}else{
+		} else {
 			$('.y-floor').find('.y-floor-item').eq(i).addClass('active').siblings().removeClass('active');
 		}
 	}
-	scrollFunc(){
+	scrollFunc() {
 		const windowScrollTop = $(window).scrollTop();
 		this.calcCurrentPosition(windowScrollTop);
 	}
-	clickAnimate(){
+	clickAnimate() {
 		const topArr = this.config.positionElTop;
 		const during = this.config.animateDuring;
 		$('.y-floor').on('click', '.y-floor-item', function () {
@@ -74,14 +82,14 @@ class Floor{
 			}, during);
 		});
 	}
-	init(){
+	init() {
 		this.matchContent2title();
 		this.prependFloor();
 		this.getWindowInitScrollTop();
 		this.calcContentPosition();
 		this.calcCurrentPosition(this.windowInitScrollTop);
 		this.clickAnimate();
-		$(window).scroll(()=> {
+		$(window).scroll(() => {
 			throttle(this.scrollFunc, this);
 		});
 	}
