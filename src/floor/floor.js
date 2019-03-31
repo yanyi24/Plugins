@@ -47,19 +47,20 @@ class Floor {
 		cfg.positionElTop.push(parseInt($(contents[contents.length - 1]).height()) + cfg.positionElTop[cfg.positionElTop.length - 1])
 	}
 	getWindowInitScrollTop() {
-		this.windowInitScrollTop = parseInt($(window).scrollTop());
+		// this.windowInitScrollTop = parseInt($(window).scrollTop());
+		return parseInt($(window).scrollTop());
 	}
 	calcCurrentPosition(currentWindowScrollTop) {
 		const cfg = this.config;
 		let newArr = cfg.positionElTop.slice(0);
-		if (cfg.positionElTop.indexOf(currentWindowScrollTop) > -1) {
-			currentWindowScrollTop += 1;
-		}
+		// if (cfg.positionElTop.indexOf(currentWindowScrollTop) > -1) {
+		// 	currentWindowScrollTop += 1;
+		// }
 		newArr.push(currentWindowScrollTop);
 		newArr.sort((a, b) => {
 			return a - b
 		});
-		let i = newArr.indexOf(currentWindowScrollTop) - 1;
+		let i = newArr.lastIndexOf(currentWindowScrollTop) - 1;
 		newArr.splice(i + 1, 1);
 
 		if (i < 0 || i >= cfg.title.length) {
@@ -85,9 +86,9 @@ class Floor {
 	init() {
 		this.matchContent2title();
 		this.prependFloor();
-		this.getWindowInitScrollTop();
+		// this.getWindowInitScrollTop();
 		this.calcContentPosition();
-		this.calcCurrentPosition(this.windowInitScrollTop);
+		this.calcCurrentPosition(this.getWindowInitScrollTop());
 		this.clickAnimate();
 		$(window).scroll(() => {
 			throttle(this.scrollFunc, this);
