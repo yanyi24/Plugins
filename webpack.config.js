@@ -36,18 +36,18 @@ let obj = {
   //   )
   // },
   'c': {
-    distDirecotry: 'floor',
+    distDirecotry: 'YCarousel',
     dist: 'dist',
     entry: {
       'jquery': './node_modules/jquery/dist/jquery.min.js',
-      'floor.jquery': './src/floor/floor.js'
+      'YCarousel.jquery': './src/YCarousel/YCarousel.js'
     },
     html: (
       new HtmlWebpackPlugin({
         filename: 'demo.html', //配置输出文件名和路径
-        template: './src/floor/demo.html', //配置文件模板
+        template: './src/YCarousel/demo.html', //配置文件模板
         chunksSortMode: 'manual', // 设置排序
-        chunks: ['jquery', 'floor.jquery'], // 设置js
+        chunks: ['jquery', 'YCarousel.jquery'], // 设置js
         minify: true,
         cache: false,
         inject: 'body'
@@ -59,7 +59,7 @@ let obj = {
 
 let o = obj.c;
 
-let distDirecotry = 'floor'; 
+let distDirecotry = 'YCarousel'; 
 let dist = o.dist;
 
 module.exports = {
@@ -97,10 +97,10 @@ module.exports = {
         }]
       },
       {
-        test: require.resolve('./src/floor/floor.js'),
+        test: require.resolve('./src/YCarousel/YCarousel.js'),
         use: [{
           loader: 'expose-loader',
-          options: 'Floor'
+          options: 'YCarousel'
         }]
       },
       {

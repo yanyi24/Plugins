@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production --optimize-minimize -p",
-    "server": "webpack-dev-server --port 8050 --mode development --content-base ./src/countdown --watch"
+    "server": "webpack-dev-server --port 8050 --mode development --content-base ./src/YCarousel --watch"
   },
   "repository": {
     "type": "git",
